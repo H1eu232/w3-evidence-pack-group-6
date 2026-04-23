@@ -75,57 +75,23 @@
 
 ### 3.2 Encryption at Rest
 
-![Encryption at rest](./images/Encryption-and-MultiAZ-configuration.png)<br>*Note: Encryption enabled với AWS-managed KMS key aws/rds — chọn AWS-managed thay vì customer CMK vì chưa có compliance mandate và muốn key rotation tự động.*
-
-```
-[Relevant section from describe output showing StorageEncrypted: true / KMS Key ARN]
-```
-
-**Notes:**  
-`[e.g. "Dùng AWS-managed key (aws/rds) thay vì customer CMK vì chưa có compliance mandate yêu cầu key rotation tự động theo lịch riêng. AWS-managed tự rotate mỗi năm mà không cần thêm operational cost."]`
+![Encryption at rest](./images/Encryption-and-MultiAZ-configuration.png)<br>*Note: Encryption enabled với AWS-managed KMS key aws/rds — chọn AWS-managed thay vì customer CMK vì chưa có compliance mandate và muốn key rotation tự động, không làm giảm hiệu năng của hệ thống.*
 
 ---
 
-### 3.3 Encryption in Transit (TLS/SSL)
+### 3.3 Multi-AZ / High Availability
 
-**Screenshot / CLI output:**
-
-```
-[Parameter group showing rds.force_ssl = 1 / TLS config]
-```
-
-**Notes:**  
-`[e.g. "Force SSL bật trên parameter group để reject mọi connection không có TLS. Application layer dùng SSL certificate từ ACM endpoint."]`
+![Multi-AZ](./images/Encryption-and-MultiAZ-configuration.png)<br>*Note: Single-AZ rẻ hơn nhưng rủi ro cao. Chọn Multi-AZ để đảm bảo Tính sẵn sàng cao (High Availability). Nếu một trung tâm dữ liệu của AWS gặp sự cố (thiên tai, mất điện), RDS sẽ tự động chuyển hướng (failover) sang Zone dự phòng trong < 60 giây, giúp hệ thống không bị gián đoạn.*
 
 ---
 
-### 3.4 Multi-AZ / High Availability
+### 3.4 Automated Backups
 
-**Screenshot / CLI output:**
-
-```
-[Console screenshot showing Multi-AZ: Yes / Replica node in AZ2]
-```
-
-**Notes:**  
-`[e.g. "Multi-AZ enabled với standby ở ap-southeast-1b. Failover tự động < 2 phút nếu primary fail. ElastiCache Replica ở AZ2 đảm bảo cache không bị cold start toàn bộ khi AZ1 có sự cố."]`
+![Backups](./images/Automated-backups.png)<br>*Note: Cấu hình sao lưu tự động hàng ngày với thời gian lưu trữ 7 ngày. Sao lưu tự động loại bỏ sai sót của con người. Nó cho phép Point-in-Time Recovery, nghĩa là bạn có thể khôi phục dữ liệu chính xác đến từng giây trong quá khứ nếu lỡ tay chạy lệnh DELETE nhầm.*
 
 ---
 
-### 3.5 Automated Backups
-
-**Screenshot / CLI output:**
-
-```
-[BackupRetentionPeriod, PreferredBackupWindow output]
-```
-
-**Notes:**  
-`[e.g. "Backup window 02:00–03:00 UTC (9:00–10:00 SA giờ) — ít traffic nhất theo CloudWatch metrics. Retention 7 ngày đủ để rollback sự cố trong sprint."]`
-
----
-
-### 3.6 Security Group — DB Tier Inbound Rules
+### 3.5 Security Group — DB Tier Inbound Rules
 
 **Screenshot / CLI output:**
 
@@ -138,7 +104,7 @@
 
 ---
 
-### 3.7 Parameter / Configuration Tuning *(nếu áp dụng)*
+### 3.6 Parameter / Configuration Tuning *(nếu áp dụng)*
 
 **Screenshot / CLI output:**
 
@@ -153,7 +119,7 @@
 
 ## 4. Working Query Evidence
 
-> **2 representative operations** khớp với paradigm đã chọn. Mỗi operation cần: screenshot + real results (không dùng mock data).
+
 
 ---
 
