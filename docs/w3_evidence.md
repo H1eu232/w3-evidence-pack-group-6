@@ -73,8 +73,7 @@
 
 ![RDS instance is running](./images/RDS-instance-running.png)
 
-**Notes:**
-
+**Notes:**<br>
 `- Chọn db.m7i.large (2 vCPU, 8GB RAM) thay vì dòng T (burstable) vì m7i cung cấp CPU performance ổn định, không bị throttle khi hết CPU credits — phù hợp với workload liên tục từ 3 Fargate services (problem, submission, identity) kết nối đồng thời.`<br>
 `- Nhóm em chọn PostgreSQL thay vì MySQL hay DynamoDB vì PostgreSQL mạnh hơn về xử lý các kiểu dữ liệu phức tạp (JSONB) và có tính năng pgvector cực tốt để lưu trữ dữ liệu vector cho AI sau này và hệ thống bài tập cần tính nhất quán cao (ACID) và các câu lệnh JOIN phức tạp giữa User - Problem - Submission. NoSQL sẽ rất khó khăn và tốn kém khi thực hiện các truy vấn quan hệ như vậy.`
 
@@ -195,10 +194,12 @@
 ---
 
 ## 5. Lambda + Bedrock Evidence
-
+**Screenshot:**
 ![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)<br>*Note: The user asks the AI questions in the frontend chat widget.*
 
+
 ![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)<br>*Note: A lambda is triggered when a request is received.*
+
 
 ![Successful Response ](./images/Response-from-bedrock.png)<br>*Note: Successful response from aws bedrock -> lambda in frontend.*
 
