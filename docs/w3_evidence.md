@@ -263,8 +263,6 @@ REPORT RequestId: abc-123 Duration: 1243.12 ms Billed: 1300 ms
 
 ## 6. VPC + Networking Evidence
 
----
-
 ### 6.1 S3 Gateway Endpoint — Route Table
 
 **Screenshot:**
