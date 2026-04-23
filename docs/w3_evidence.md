@@ -187,6 +187,9 @@ WHERE
 ---
 
 ## 5. Lambda + Bedrock Evidence
+
+### 5.1 Lambda Trigger — CloudWatch Logs
+
 **Screenshot:**
 
 1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)
@@ -199,11 +202,6 @@ WHERE
 
 
 ---
-
-### 5.1 Lambda Trigger — CloudWatch Logs
-
-**Log stream:** `[/aws/lambda/<function-name>]`  
-**Timestamp:** `[YYYY-MM-DD HH:MM:SS UTC]`
 
 **CloudWatch log entry:**
 
