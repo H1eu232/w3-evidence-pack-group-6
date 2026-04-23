@@ -234,7 +234,7 @@
 
 ## 5. Lambda + Bedrock Evidence
 
-![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)<br><sub>*Note: The user asks the AI questions in the frontend chat widget.*</sub>
+![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)<br>*Note: The user asks the AI questions in the frontend chat widget.*
 
 ![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)<br>*Note: A lambda is triggered when a request is received.*
 
