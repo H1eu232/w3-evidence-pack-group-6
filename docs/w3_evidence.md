@@ -105,27 +105,14 @@
 
 **Screenshot:**
 
-![Backups](./images/Automated-backups.png)
+![Automated Backups](./images/Automated-backups.png)
 
 **Notes:** 
-`[Cấu hình sao lưu tự động hàng ngày với thời gian lưu trữ 7 ngày. Sao lưu tự động loại bỏ sai sót của con người. Nó cho phép Point-in-Time Recovery, nghĩa là bạn có thể khôi phục dữ liệu chính xác đến từng giây trong quá khứ nếu lỡ tay chạy lệnh DELETE nhầm.`
+`Cấu hình sao lưu tự động hàng ngày với thời gian lưu trữ 7 ngày. Sao lưu tự động loại bỏ sai sót của con người. Nó cho phép Point-in-Time Recovery, nghĩa là bạn có thể khôi phục dữ liệu chính xác đến từng giây trong quá khứ nếu lỡ tay chạy lệnh DELETE nhầm.`
 
 ---
 
-### 3.5 Security Group — DB Tier Inbound Rules
-
-**Screenshot / CLI output:**
-
-```
-[aws ec2 describe-security-groups --group-ids <db-sg-id>]
-```
-
-**Notes:**  
-`[e.g. "Inbound chỉ cho phép SG của app-tier (ECS tasks) — không expose port 5432 ra internet hay bastion. Source là SG ID, không phải CIDR, để rule không bị stale khi IP thay đổi."]`
-
----
-
-### 3.6 Parameter / Configuration Tuning *(nếu áp dụng)*
+### 3.5 Parameter / Configuration Tuning *(nếu áp dụng)*
 
 **Screenshot / CLI output:**
 
@@ -189,7 +176,14 @@ ORDER BY
 **Query / Command:**
 
 ```sql
--- [Paste query here]
+SELECT
+    id,
+    username,
+    status_code
+FROM
+    app_identity.users
+WHERE
+    username = 'Hoang_Admin';
 ```
 
 **Result screenshot:**
@@ -204,7 +198,7 @@ ORDER BY
 ## 5. Lambda + Bedrock Evidence
 **Screenshot:**
 
-1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)
+1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)
 
 
 2. A lambda is triggered when a request is received.<br>![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)
@@ -273,43 +267,37 @@ REPORT RequestId: abc-123 Duration: 1243.12 ms Billed: 1300 ms
 
 ### 6.1 S3 Gateway Endpoint — Route Table
 
-**Screenshot / CLI output:**
+**Screenshot:**
 
-```
-[aws ec2 describe-route-tables --route-table-ids <rtb-id>]
-```
+![S3 Gateway Endpoint](./images/S3-gateway-endpoint.png)
 
-> *(Hoặc console screenshot showing route: pl-XXXXXX → vpce-XXXXXX)*
+![Route Table](./images/Route-table.png)
 
-**Notes:**  
-`[e.g. "S3 Gateway Endpoint thêm vào route table của private subnet để traffic tới S3 không đi qua NAT Gateway — giảm NAT cost và latency. Áp dụng cho cả problem-assets và submission-artifacts buckets."]`
+**Notes:**<br>
+`- Thiết lập đường kết nối riêng từ VPC tới S3.`<br>
+`- Chọn sử dụng Gateway Endpoint thay cho internet/NAT gateway vì dữ liệu file bài nộp đi thẳng từ Server tới S3 qua mạng nội bộ AWS, không bao giờ lộ ra Internet và truy cập qua Endpoint là miễn phí, trong khi đi qua NAT Gateway bạn phải trả tiền trên mỗi GB dữ liệu. Với hệ thống nhiều file bài tập, đây là cách tiết kiệm chi phí tối ưu nhất.`
 
 ---
 
 ### 6.2 DB Security Group — Inbound Rules (App-tier SG as Source)
 
-**Screenshot / CLI output:**
+**Screenshot:**
 
-```
-[aws ec2 describe-security-groups --group-ids <db-sg-id>
- — showing InboundRules with UserIdGroupPairs referencing app-tier SG]
-```
+![Security Group](./images/SG-inbound-rule.png)
 
-**Notes:**  
-`[e.g. "Source là SG ID của ECS task security group, không phải CIDR. Khi Fargate task scale out/in, IP thay đổi nhưng SG rule vẫn đúng — không cần cập nhật thủ công."]`
+**Notes:**<br>
+`Inbound Rule chỉ cho phép duy nhất Security Group của tầng ứng dụng (App-tier) truy cập vào cổng Database. Cách thiết lập này tuân thủ nguyên tắc "Least Privilege", cô lập hoàn toàn Database khỏi các truy cập trái phép từ bên ngoài môi trường VPC.`<br>
+`Dùng SG ID vì dù server tầng App có thay đổi IP liên tục (do Auto Scaling), Database vẫn tự động nhận diện và cho phép truy cập mà không cần cấu hình lại thủ công.`
 
 ---
 
 ## 7. Negative Security Test
-
-> **Mục tiêu:** Chứng minh unauthorized access bị **denied** — không phải chỉ claim rằng security đã được cấu hình.
-
 ---
 
 ### 7.1 Test Description
 
 **What was attempted:**  
-`[e.g. "Kết nối trực tiếp tới RDS endpoint từ EC2 instance không nằm trong app-tier security group (dùng bastion test instance với SG khác)."]`
+`Thử kết nối từ máy cá nhân tới Endpoint RDS và nhận lỗi Connection timed out`
 
 **From:** `[e.g. EC2 instance i-XXXXXXXXXX, SG: sg-YYYYYYYY (not app-tier)]`  
 **To:** `[e.g. RDS endpoint xxx.rds.amazonaws.com:5432]`  
