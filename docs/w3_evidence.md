@@ -73,27 +73,13 @@
 
 ### 3.1 Database Instance Created & Running
 
-**Screenshot / CLI output:**
-
-```
-[Paste: aws rds describe-db-instances --db-instance-identifier <your-id>
- OR aws dynamodb describe-table --table-name <name>
- OR aws docdb describe-db-clusters
- OR engine-native command for self-hosted]
-```
-
-> *(Hoặc embed ảnh screenshot AWS Console tại đây)*
-
-![RDS instance is running](./images/RDS-instance-running.png)<br>*Note: Chọn db.m7i.large (2 vCPU, 8GB RAM) thay vì dòng T (burstable) vì m7i cung cấp CPU performance ổn định, không bị throttle khi hết CPU credits — phù hợp với workload liên tục từ 3 Fargate services (problem, submission, identity) kết nối đồng thời. Encryption enabled với AWS-managed KMS key aws/rds — chọn AWS-managed thay vì customer CMK vì chưa có compliance mandate và muốn key rotation tự động.*
-
-**Notes:**  
-`[e.g. "Chọn db.t3.medium thay vì t3.micro vì workload submission service có burst write cao vào giờ thi. Multi-AZ enabled để đảm bảo failover tự động."]`
+![RDS instance is running](./images/RDS-instance-running.png)<br>*Note: Chọn db.m7i.large (2 vCPU, 8GB RAM) thay vì dòng T (burstable) vì m7i cung cấp CPU performance ổn định, không bị throttle khi hết CPU credits — phù hợp với workload liên tục từ 3 Fargate services (problem, submission, identity) kết nối đồng thời.*
 
 ---
 
 ### 3.2 Encryption at Rest
 
-**Screenshot / CLI output:**
+![Encryption at rest](./images/Encryption-and-MultiAZ-configuration.png)<br>*Note: Encryption enabled với AWS-managed KMS key aws/rds — chọn AWS-managed thay vì customer CMK vì chưa có compliance mandate và muốn key rotation tự động.*
 
 ```
 [Relevant section from describe output showing StorageEncrypted: true / KMS Key ARN]
