@@ -119,10 +119,6 @@
 
 ## 4. Working Query Evidence
 
-- JOIN Query
-  
-  ![JOIN Query](./images/JOIN-query.png)<br>*Note: Truy vấn kết hợp thông tin từ 3 bảng khác nhau trong một câu lệnh duy nhất (Relation Model). Chỉ với 1 request, ứng dụng có thể lấy toàn bộ thông tin cần thiết, giảm thiểu số lượng kết nối tới DB, tối ưu hóa tốc độ tải trang.*
-
 - Indexed lookup 
 
   ![Indexed lookup](./images/Indexed-lookup.png)<br>*Note: Hệ thống sử dụng Index Scan thay vì Sequential Scan khi tìm kiếm User. Nếu không có Index, DB phải quét từng dòng một (Sequential Scan). Với Index, tốc độ tìm kiếm là cực nhanh (O(log n)). Hệ thống được thiết kế để đảm bảo tính scalability, vẫn chạy mượt khi có hàng triệu người dùng.*
@@ -152,12 +148,10 @@
 
 > *(Embed ảnh hoặc paste output có real data)*
 
-```
-[Paste result rows / document / traversal output here]
-```
+![JOIN Query](./images/JOIN-query.png)<br>*Note: Truy vấn kết hợp thông tin từ 3 bảng khác nhau trong một câu lệnh duy nhất (Relation Model). Chỉ với 1 request, ứng dụng có thể lấy toàn bộ thông tin cần thiết, giảm thiểu số lượng kết nối tới DB, tối ưu hóa tốc độ tải trang.*
 
 **What this demonstrates:**  
-`[e.g. "JOIN giữa bảng users và submissions, confirm foreign key relationship hoạt động đúng và index trên user_id được sử dụng (EXPLAIN ANALYZE output đính kèm)."]`
+`Truy vấn kết hợp thông tin từ 3 bảng khác nhau trong một câu lệnh duy nhất (Relation Model). Chỉ với 1 request, ứng dụng có thể lấy toàn bộ thông tin cần thiết, giảm thiểu số lượng kết nối tới DB, tối ưu hóa tốc độ tải trang.`
 
 ---
 
