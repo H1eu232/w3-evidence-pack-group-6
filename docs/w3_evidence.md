@@ -16,7 +16,7 @@
 
 ## 2. Data Access Pattern Log
 
-### Part A — Access Pattern Inventory *(từ Must-Have 1)*
+### Part A — Access Pattern Inventory 
 
 | # | Entity / Feature | Operation | Frequency | Notes |
 |---|---|---|---|---|
@@ -38,11 +38,10 @@ Pattern 2(Submission History):<br>
 - **Paradigm:** `Relational`<br>
 - **Reasoning:** `Hiệu quả nhất vì đây là truy vấn liên kết (JOIN) giữa 3 bảng: submissions, users và problems. Việc dùng Relational engine giúp thực hiện JOIN tại server-side, trả về kết quả cuối cùng chỉ trong 1 request duy nhất thay vì phải gọi DB nhiều lần.`
 
-Pattern 1(Auth):<br>
+Pattern 3(Chatbot Metadata):<br>
 - **Engine chosen:** `RDS PostgreSQL `  
 - **Paradigm:** `Relational`<br>
 - **Reasoning:** `Metadata bài tập yêu cầu sự nhất quán (Consistency). PostgreSQL đảm bảo dữ liệu cung cấp cho AI luôn là phiên bản mới nhất và chính xác nhất.`
-
 
 **If high-cost managed service:** 
 - Estimated monthly cost: `~$280 - $320/month` based on `[db.m7i.large, 200GB SSD, Multi-AZ]`
@@ -50,16 +49,10 @@ Pattern 1(Auth):<br>
 
 ---
 
-### Part C — Final Decision Log
+### Part C — "Wrong-paradigm" test
 
-**Decision date:** `[DD/MM/YYYY]`  
-**Decision maker(s):** `[Names]`  
-**Alternatives considered:**
-
-| Alternative | Reason rejected |
-|---|---|
-| `[e.g. DynamoDB]` | `[e.g. Complex join patterns not suited for key-value]` |
-| `[e.g. Self-hosted MongoDB on EC2]` | `[e.g. Operational overhead too high for team size]` |
+**Pattern Selected:** `Pattern 2`  
+**Reasoning:** `Nếu sử dụng Key-Value store (như DynamoDB) cho pattern này, hệ thống sẽ gặp vấn đề lớn về hiệu năng và chi phí. Vì DynamoDB không hỗ trợ JOIN, ứng dụng sẽ phải thực hiện "Client-side JOIN": gọi bảng Submissions để lấy danh sách ID, sau đó gọi tiếp hàng chục request tới bảng Problems để lấy tiêu đề bài tập. Với tần suất 300 calls/phút, số lượng Read Capacity Units (RCU) sẽ tăng vọt, gây độ trễ (latency) lớn và chi phí vận hành cao hơn gấp nhiều lần so với một lệnh SQL JOIN đơn giản trên PostgreSQL.`  
 
 ---
 
