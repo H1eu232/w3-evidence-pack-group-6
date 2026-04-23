@@ -153,12 +153,20 @@
 **Query / Command:**
 
 ```sql
--- [Paste query here]
--- e.g. SELECT u.username, COUNT(s.id) AS submission_count
---      FROM users u
---      JOIN submissions s ON s.user_id = u.id
---      WHERE u.created_at > '2025-01-01'
---      GROUP BY u.id;
+SELECT 
+    u.username, 
+    p.title AS problem_title, 
+    s.verdict_code, 
+    s.status_code, 
+    s.created_at
+FROM 
+    submission.submissions s
+JOIN 
+    app_identity.users u ON s.user_id = u.id
+JOIN 
+    problem.problems p ON s.problem_id = p.id
+ORDER BY 
+    s.created_at DESC;
 ```
 
 **Result screenshot:**
