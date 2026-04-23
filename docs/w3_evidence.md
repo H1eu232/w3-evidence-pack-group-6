@@ -118,10 +118,6 @@
 ---
 
 ## 4. Working Query Evidence
-
-- Indexed lookup 
-
- 
   
 ---
 
