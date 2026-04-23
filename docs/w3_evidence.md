@@ -28,10 +28,10 @@
 ---
 
 ### Part B — Engine & Paradigm Selection Reasoning
-- Pattern 1(Auth):<br>
-**Engine chosen:** `RDS PostgreSQL `  
-**Paradigm:** `Relational`<br>
-**Reasoning:** `Dữ liệu của hệ thống (User, Problem, Submission) có mối quan hệ chặt chẽ và chằng chéo (Many-to-Many). Việc sử dụng Relational Paradigm cho phép chúng ta thực hiện các câu lệnh JOIN phức tạp để lấy thông tin từ nhiều bảng chỉ trong một lần truy vấn. PostgreSQL được chọn vì nó hỗ trợ tốt cả dữ liệu cấu trúc (SQL) và dữ liệu không cấu trúc (JSONB), đồng thời có khả năng mở rộng tốt cho các tính năng AI sau này thông qua pgvector.`
+Pattern 1(Auth):<br>
+- **Engine chosen:** `RDS PostgreSQL `  
+- **Paradigm:** `Relational`<br>
+- **Reasoning:** `Dữ liệu của hệ thống (User, Problem, Submission) có mối quan hệ chặt chẽ và chằng chéo (Many-to-Many). Việc sử dụng Relational Paradigm cho phép chúng ta thực hiện các câu lệnh JOIN phức tạp để lấy thông tin từ nhiều bảng chỉ trong một lần truy vấn. PostgreSQL được chọn vì nó hỗ trợ tốt cả dữ liệu cấu trúc (SQL) và dữ liệu không cấu trúc (JSONB), đồng thời có khả năng mở rộng tốt cho các tính năng AI sau này thông qua pgvector.`
 
 
 **If high-cost managed service:** 
