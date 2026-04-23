@@ -40,12 +40,12 @@ Dữ liệu của hệ thống (User, Problem, Submission) có mối quan hệ c
 
 | What we gain | What we give up |
 |---|---|
-| `[e.g. Strong consistency, ACID transactions]` | `[e.g. Horizontal scale complexity]` |
-| | |
+| `Strong consistency: Dữ liệu luôn chính xác (ACID)` | `Scaling complexity: Khó mở rộng ngang (Horizontal Scale) hơn NoSQL` |
+| `SQL Flexibility: Dễ dàng viết các query phức tạp` | `Fixed Schema: Phải định nghĩa bảng rõ ràng trước khi dùng` |
 
-**If high-cost managed service:** *(Bỏ qua nếu không áp dụng)*
-- Estimated monthly cost: `$[X]/month` based on `[instance type, storage, I/O]`
-- Cost justification: `[Reasoning]`
+**If high-cost managed service:** 
+- Estimated monthly cost: `~$250 - $300/month` based on `[db.m7i.large, 200GB SSD, Multi-AZ]`
+- Cost justification: `Chi phí này là xứng đáng để có được High Availability (Multi-AZ) và khả năng tự động sao lưu. Với một hệ thống chấm bài, việc mất dữ liệu bài nộp là không thể chấp nhận được, nên việc đầu tư vào RDS là tối ưu hơn tự cài trên EC2.`
 
 ---
 
