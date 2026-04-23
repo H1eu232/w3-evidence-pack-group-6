@@ -195,13 +195,14 @@
 
 ## 5. Lambda + Bedrock Evidence
 **Screenshot:**
-![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)<br>*Note: The user asks the AI questions in the frontend chat widget.*
+
+1. ![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)<br>*Note: The user asks the AI questions in the frontend chat widget.*
 
 
-![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)<br>*Note: A lambda is triggered when a request is received.*
+2. ![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)<br>*Note: A lambda is triggered when a request is received.*
 
 
-![Successful Response ](./images/Response-from-bedrock.png)<br>*Note: Successful response from aws bedrock -> lambda in frontend.*
+3. ![Successful Response ](./images/Response-from-bedrock.png)<br>*Note: Successful response from aws bedrock -> lambda in frontend.*
 
 
 ---
