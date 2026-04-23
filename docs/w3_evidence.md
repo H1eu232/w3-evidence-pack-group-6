@@ -236,7 +236,7 @@
 
 ![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)
 
-**Note: The user asks the AI questions in the frontend chat widget**
+<small> *Note: The user asks the AI questions in the frontend chat widget.*</small>
 ---
 
 ### 5.1 Lambda Trigger — CloudWatch Logs
