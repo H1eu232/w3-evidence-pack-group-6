@@ -236,6 +236,7 @@
 
 > Cần: CloudWatch Logs entry có **timestamp sau Lambda trigger** + Bedrock **Retrieve/RetrieveAndGenerate** response từ Lambda hoặc CLI (không phải Playground).
 
+![Ask Chatbot in frontend chat widget](./images/askAIfromFE.png)
 
 ---
 
