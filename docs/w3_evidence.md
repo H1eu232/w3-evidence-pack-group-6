@@ -121,7 +121,7 @@
 
 - Indexed lookup 
 
-  ![Indexed lookup](./images/Indexed-lookup.png)<br>*Note: Hệ thống sử dụng Index Scan thay vì Sequential Scan khi tìm kiếm User. Nếu không có Index, DB phải quét từng dòng một (Sequential Scan). Với Index, tốc độ tìm kiếm là cực nhanh (O(log n)). Hệ thống được thiết kế để đảm bảo tính scalability, vẫn chạy mượt khi có hàng triệu người dùng.*
+ 
   
 ---
 
@@ -148,7 +148,7 @@
 
 > *(Embed ảnh hoặc paste output có real data)*
 
-![JOIN Query](./images/JOIN-query.png)<br>*Note: Truy vấn kết hợp thông tin từ 3 bảng khác nhau trong một câu lệnh duy nhất (Relation Model). Chỉ với 1 request, ứng dụng có thể lấy toàn bộ thông tin cần thiết, giảm thiểu số lượng kết nối tới DB, tối ưu hóa tốc độ tải trang.*
+![JOIN Query](./images/JOIN-query.png)
 
 **What this demonstrates:**  
 `Truy vấn kết hợp thông tin từ 3 bảng khác nhau trong một câu lệnh duy nhất (Relation Model). Chỉ với 1 request, ứng dụng có thể lấy toàn bộ thông tin cần thiết, giảm thiểu số lượng kết nối tới DB, tối ưu hóa tốc độ tải trang.`
@@ -173,12 +173,10 @@
 
 > *(Embed ảnh hoặc paste output có real data)*
 
-```
-[Paste result here]
-```
+![Indexed lookup](./images/Indexed-lookup.png)
 
 **What this demonstrates:**  
-`[e.g. "Index lookup trên email field, EXPLAIN ANALYZE confirm Index Scan thay vì Seq Scan — query cost O(log n)."]`
+Hệ thống sử dụng Index Scan thay vì Sequential Scan khi tìm kiếm User. Nếu không có Index, DB phải quét từng dòng một (Sequential Scan). Với Index, tốc độ tìm kiếm là cực nhanh (O(log n)). Hệ thống được thiết kế để đảm bảo tính scalability, vẫn chạy mượt khi có hàng triệu người dùng.
 
 ---
 
