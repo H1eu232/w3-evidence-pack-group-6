@@ -28,8 +28,8 @@
 ---
 
 ### Part B — Engine & Paradigm Selection Reasoning
-
-**Engine chosen:** `RDS PostgreSQL + version`  
+- Pattern 1(Auth): 
+**Engine chosen:** `RDS PostgreSQL `  
 **Paradigm:** `Relational`
 
 **Reasoning:**
