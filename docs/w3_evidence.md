@@ -84,6 +84,8 @@
 
 > *(Hoặc embed ảnh screenshot AWS Console tại đây)*
 
+![RDS instance is running](./images/RDS-instance-running.png)<br>*Note: Chọn db.m7i.large (2 vCPU, 8GB RAM) thay vì dòng T (burstable) vì m7i cung cấp CPU performance ổn định, không bị throttle khi hết CPU credits — phù hợp với workload liên tục từ 3 Fargate services (problem, submission, identity) kết nối đồng thời. Encryption enabled với AWS-managed KMS key aws/rds — chọn AWS-managed thay vì customer CMK vì chưa có compliance mandate và muốn key rotation tự động.*
+
 **Notes:**  
 `[e.g. "Chọn db.t3.medium thay vì t3.micro vì workload submission service có burst write cao vào giờ thi. Multi-AZ enabled để đảm bảo failover tự động."]`
 
