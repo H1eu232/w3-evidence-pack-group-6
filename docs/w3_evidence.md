@@ -67,10 +67,6 @@
 
 ## 3. Deployment Evidence
 
-> **Mỗi acceptance criterion = 1 entry.** Mỗi entry cần: (a) screenshot hoặc CLI output, (b) 1–2 dòng notes giải thích *tại sao* cấu hình đó được chọn — không chỉ confirm nó tồn tại.
-
----
-
 ### 3.1 Database Instance Created & Running
 
 ![RDS instance is running](./images/RDS-instance-running.png)<br>*Note: Chọn db.m7i.large (2 vCPU, 8GB RAM) thay vì dòng T (burstable) vì m7i cung cấp CPU performance ổn định, không bị throttle khi hết CPU credits — phù hợp với workload liên tục từ 3 Fargate services (problem, submission, identity) kết nối đồng thời.*
