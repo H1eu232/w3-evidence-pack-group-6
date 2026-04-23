@@ -121,7 +121,7 @@
   
 ---
 
-### 4.1 Operation 1 — *[Tên operation theo paradigm]*
+### 4.1 Operation 1 — *[JOIN query]*
 
 **Paradigm requirement:**  
 - Relational → JOIN qua ≥2 related tables  
@@ -142,8 +142,6 @@
 
 **Result screenshot:**
 
-> *(Embed ảnh hoặc paste output có real data)*
-
 ![JOIN Query](./images/JOIN-query.png)
 
 **What this demonstrates:**  
@@ -151,7 +149,7 @@
 
 ---
 
-### 4.2 Operation 2 — *[Tên operation theo paradigm]*
+### 4.2 Operation 2 — *[Indexed lookup]*
 
 **Paradigm requirement:**  
 - Relational → Indexed lookup (EXPLAIN shows Index Scan)  
@@ -167,12 +165,10 @@
 
 **Result screenshot:**
 
-> *(Embed ảnh hoặc paste output có real data)*
-
 ![Indexed lookup](./images/Indexed-lookup.png)
 
 **What this demonstrates:**  
-Hệ thống sử dụng Index Scan thay vì Sequential Scan khi tìm kiếm User. Nếu không có Index, DB phải quét từng dòng một (Sequential Scan). Với Index, tốc độ tìm kiếm là cực nhanh (O(log n)). Hệ thống được thiết kế để đảm bảo tính scalability, vẫn chạy mượt khi có hàng triệu người dùng.
+`Hệ thống sử dụng Index Scan thay vì Sequential Scan khi tìm kiếm User. Nếu không có Index, DB phải quét từng dòng một (Sequential Scan). Với Index, tốc độ tìm kiếm là cực nhanh (O(log n)). Hệ thống được thiết kế để đảm bảo tính scalability, vẫn chạy mượt khi có hàng triệu người dùng.`
 
 ---
 
