@@ -23,21 +23,18 @@
 | 1 | `User` | `Lookup by username/email (đăng nhập)` | `High` | `Cần tốc độ phản hồi cực nhanh` |
 | 2 | `Problem` | `Get problem details by ID` | `Medium` | `Truy xuất đề bài và metadata` | 
 | 3 |`Submission` | `JOIN Submission + User + Problem (xem lịch sử)` | `High` | `Truy vấn quan hệ phức tạp để hiện tên user và tên bài` |
-| 4 | `Leaderboard` | `Aggregation (SUM điểm của user)` | `Medium` | `Cần tính toán trên nhiều bản ghi` |
-| 5 | `AI Chatbot` | `Retrieve vector embeddings (Bedrock)` | `Low` | `Kết nối dữ liệu bài tập với AI` |
-
-> Thêm hàng tuỳ số access pattern đã identify ở W2.
+| 4 | `AI Chatbot` | `Retrieve vector embeddings (Bedrock)` | `Low` | `Kết nối dữ liệu bài tập với AI` |
 
 ---
 
 ### Part B — Engine & Paradigm Selection Reasoning
 
-**Engine chosen:** `[Engine name + version]`  
-**Paradigm:** `[Relational / Key-Value / Document / Graph]`
+**Engine chosen:** `RDS PostgreSQL + version`  
+**Paradigm:** `Relational`
 
 **Reasoning:**
 
-> _Giải thích tại sao paradigm này phù hợp với access patterns ở Part A. Ví dụ: "Dữ liệu problem, submission và user có quan hệ nhiều-nhiều → cần JOIN → chọn relational. DynamoDB bị loại vì query pattern phức tạp, không chỉ partition key lookup."_
+Dữ liệu của hệ thống (User, Problem, Submission) có mối quan hệ chặt chẽ và chằng chéo (Many-to-Many). Việc sử dụng Relational Paradigm cho phép chúng ta thực hiện các câu lệnh JOIN phức tạp để lấy thông tin từ nhiều bảng chỉ trong một lần truy vấn. PostgreSQL được chọn vì nó hỗ trợ tốt cả dữ liệu cấu trúc (SQL) và dữ liệu không cấu trúc (JSONB), đồng thời có khả năng mở rộng tốt cho các tính năng AI sau này thông qua pgvector
 
 **Trade-offs acknowledged:**
 
