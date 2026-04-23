@@ -31,12 +31,22 @@
 Pattern 1(Auth):<br>
 - **Engine chosen:** `RDS PostgreSQL `  
 - **Paradigm:** `Relational`<br>
-- **Reasoning:** `Dữ liệu của hệ thống (User, Problem, Submission) có mối quan hệ chặt chẽ và chằng chéo (Many-to-Many). Việc sử dụng Relational Paradigm cho phép chúng ta thực hiện các câu lệnh JOIN phức tạp để lấy thông tin từ nhiều bảng chỉ trong một lần truy vấn. PostgreSQL được chọn vì nó hỗ trợ tốt cả dữ liệu cấu trúc (SQL) và dữ liệu không cấu trúc (JSONB), đồng thời có khả năng mở rộng tốt cho các tính năng AI sau này thông qua pgvector.`
+- **Reasoning:** `DPostgreSQL xử lý cực nhanh các point lookup. Điều này giúp DB tìm thấy user ngay lập tức mà không cần quét toàn bộ bảng (Full Table Scan).`
+
+Pattern 2(Submission History):<br>
+- **Engine chosen:** `RDS PostgreSQL `  
+- **Paradigm:** `Relational`<br>
+- **Reasoning:** `Hiệu quả nhất vì đây là truy vấn liên kết (JOIN) giữa 3 bảng: submissions, users và problems. Việc dùng Relational engine giúp thực hiện JOIN tại server-side, trả về kết quả cuối cùng chỉ trong 1 request duy nhất thay vì phải gọi DB nhiều lần.`
+
+Pattern 1(Auth):<br>
+- **Engine chosen:** `RDS PostgreSQL `  
+- **Paradigm:** `Relational`<br>
+- **Reasoning:** `Metadata bài tập yêu cầu sự nhất quán (Consistency). PostgreSQL đảm bảo dữ liệu cung cấp cho AI luôn là phiên bản mới nhất và chính xác nhất.`
 
 
 **If high-cost managed service:** 
-- Estimated monthly cost: `~$250 - $300/month` based on `[db.m7i.large, 200GB SSD, Multi-AZ]`
-- Cost justification: `Chi phí này là xứng đáng để có được High Availability (Multi-AZ) và khả năng tự động sao lưu. Với một hệ thống chấm bài, việc mất dữ liệu bài nộp là không thể chấp nhận được, nên việc đầu tư vào RDS là tối ưu hơn tự cài trên EC2.`
+- Estimated monthly cost: `~$280 - $320/month` based on `[db.m7i.large, 200GB SSD, Multi-AZ]`
+- Cost justification: `Dựa trên instance db.m7i.large tại Region Singapore, cấu hình Multi-AZ để đảm bảo HA, 200GB SSD gp3 và chi phí cho backup/snapshot hàng ngày. Đây là chi phí hợp lý để đổi lấy sự ổn định và bảo mật cho dữ liệu bài thi của người dùng.`
 
 ---
 
