@@ -20,11 +20,11 @@
 
 | # | Entity / Feature | Operation | Frequency | Notes |
 |---|---|---|---|---|
-| 1 | `[e.g. User]` | `[e.g. Lookup by email]` | `[e.g. High]` | |
-| 2 | | | | |
-| 3 | | | | |
-| 4 | | | | |
-| 5 | | | | |
+| 1 | `User` | `Lookup by username/email (đăng nhập)` | `High` | `Cần tốc độ phản hồi cực nhanh` |
+| 2 | `Problem` | `Get problem details by ID` | `Medium` | `Truy xuất đề bài và metadata` | 
+| 3 |`Submission` | `JOIN Submission + User + Problem (xem lịch sử)` | `High` | `Truy vấn quan hệ phức tạp để hiện tên user và tên bài` |
+| 4 | `Leaderboard` | `Aggregation (SUM điểm của user)` | `Medium` | `Cần tính toán trên nhiều bản ghi` |
+| 5 | `AI Chatbot` | `Retrieve vector embeddings (Bedrock)` | `Low` | `Kết nối dữ liệu bài tập với AI` |
 
 > Thêm hàng tuỳ số access pattern đã identify ở W2.
 
