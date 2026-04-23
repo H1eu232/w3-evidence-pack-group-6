@@ -120,6 +120,7 @@
 ## 4. Working Query Evidence
 
 - JOIN Query
+  
   ![JOIN Query](./images/JOIN-query.png)<br>*Note: Truy vấn kết hợp thông tin từ 3 bảng khác nhau trong một câu lệnh duy nhất (Relation Model). Chỉ với 1 request, ứng dụng có thể lấy toàn bộ thông tin cần thiết, giảm thiểu số lượng kết nối tới DB, tối ưu hóa tốc độ tải trang.
   
 ---
