@@ -210,6 +210,17 @@ WHERE
 `Log thực tế xác nhận Lambda đã được kích hoạt thành công. Thời gian chạy (Duration) là 7363.24 ms. Lambda đã thực hiện kết nối với Bedrock, gửi yêu cầu và đợi AI xử lý để trả về kết quả. Việc log không có mã lỗi (Error) minh chứng cho sự ổn định của kết nối giữa
 Lambda và Bedrock.`
 
+**Lambda Excution Role**
+
+![Excution role](./images/Excution-role.png)
+
+![Policy](./images/Excution-role-policy.png)
+
+**Notes:**<br>
+`-Lambda sử dụng một Execution Role riêng biệt, được cấu hình với các quyền hạn cụ thể. `<br>
+`-Chỉ cho phép các hành động cần thiết như bedrock:InvokeModel để làm việc với AI, và logs:CreateLogGroup/Stream để ghi log. Không sử dụng Action: "*"`<br>
+`Chọn hướng đi này vì giới hạn được phạm vi truy cập giúp giảm thiểu rủi ro bảo mật. Nếu mã nguồn Lambda vô tình bị lộ hoặc bị tấn công, kẻ xấu cũng không thể lợi dụng Role này để can thiệp vào các dịch vụ khác trong tài khoản AWS (như xóa Database hay thay đổi cấu hình mạng).`
+
 ---
 
 ### 5.2 Bedrock Retrieve / RetrieveAndGenerate Response
