@@ -187,7 +187,9 @@ WHERE
 ## 5. Lambda + Bedrock Evidence
 
 ### 5.1 Lambda Trigger — CloudWatch Logs
+
 **Data Flow:** User Hỏi -> 2. Hệ thống xử lý (Lambda) -> 3. AI Trả lời
+
 **Screenshot:**
 
 1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)<br>*Notes:`một request HTTP POST được gửi tới API Gateway. Frontend chuyển sang trạng thái "Searching..." để thông báo cho người dùng rằng yêu cầu đang được xử lý ở phía Backend.`*
