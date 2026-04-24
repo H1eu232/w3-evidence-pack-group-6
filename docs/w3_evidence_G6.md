@@ -190,13 +190,13 @@ WHERE
 
 **Screenshot:**
 
-1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)<br>**Notes:`một request HTTP POST được gửi tới API Gateway. Frontend chuyển sang trạng thái "Searching..." để thông báo cho người dùng rằng yêu cầu đang được xử lý ở phía Backend.`**
+1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)<br>*Notes:`một request HTTP POST được gửi tới API Gateway. Frontend chuyển sang trạng thái "Searching..." để thông báo cho người dùng rằng yêu cầu đang được xử lý ở phía Backend.`*
 
 
-2. A lambda is triggered when a request is received.<br>![Trigger with API gateway](./images/Trigger-with-API-gateway.png)
+2. A lambda is triggered when a request is received.<br>![Trigger with API gateway](./images/Trigger-with-API-gateway.png)<br>*Notes:`Code Python (handler.py) chịu trách nhiệm nhận tham số từ người dùng, thực hiện truy vấn tới Amazon Bedrock Knowledge Base, sau đó định dạng lại kết quả (JSON) để trả về cho Frontend. Hệ thống có thể xử lý hàng nghìn yêu cầu chatbot đồng thời mà không cần quản lý server và API Gateway giúp bảo vệ Lambda khỏi các truy cập trái phép và thực hiện giới hạn tốc độ (Throttling) nếu cần.`*
 
 
-3. Successful response from aws bedrock -> lambda in frontend.<br>![Successful Response ](./images/Response-from-bedrock.png)
+3. Successful response from aws bedrock -> lambda in frontend.<br>![Successful Response ](./images/Response-from-bedrock.png)<br>*Notes:`Chatbot hiển thị nội dung chi tiết của bài tập "Bookstore Balance".`*
 
 ---
 
