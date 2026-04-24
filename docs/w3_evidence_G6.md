@@ -19,7 +19,7 @@
 ### Part A — Access Pattern Inventory 
 
 | # | Entity / Feature | Operation | Frequency | 
-|---|---|---|---|---|
+|---|---|---|---|
 | 1 | `User Authentication` | `Tìm kiếm thông tin người dùng theo username để kiểm tra thông tin đăng nhập` | `~100 calls/phút lúc peak` | 
 | 2 | `Submission History` | ` Lấy danh sách 20 bài nộp gần nhất của một User, hiển thị kèm tiêu đề bài tập và trạng thái (Success/Fail)` | `~300 calls/phút lúc active coding` | 
 | 3 |`Problem Metadata for AI Chatbot` | `Truy xuất thông tin chi tiết và metadata của một bài tập dựa trên ID để cung cấp ngữ cảnh cho Lambda/Bedrock` | ` ~50 calls/phút lúc người dùng chat` | 
