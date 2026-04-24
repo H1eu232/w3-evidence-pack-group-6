@@ -209,7 +209,7 @@ WHERE
 `Log thực tế xác nhận Lambda đã được kích hoạt thành công. Thời gian chạy (Duration) là 7363.24 ms. Lambda đã thực hiện kết nối với Bedrock, gửi yêu cầu và đợi AI xử lý để trả về kết quả. Việc log không có mã lỗi (Error) minh chứng cho sự ổn định của kết nối giữa
 Lambda và Bedrock.`
 
-**Lambda Excution Role**
+### 5.2 Lambda Excution Role
 
 ![Excution role](./images/Excution-role.png)
 
@@ -222,7 +222,7 @@ Lambda và Bedrock.`
 
 ---
 
-### 5.2 Bedrock Retrieve / RetrieveAndGenerate Response
+### 5.3 Bedrock Retrieve / RetrieveAndGenerate Response
 
 **Method used:** `[ ]` RetrieveAndGenerate &nbsp;&nbsp; `[ ]` Retrieve (then generate separately)  
 **Knowledge Base ID:** `[kb-XXXXXXXXXX]`  
