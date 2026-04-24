@@ -292,17 +292,35 @@ Lambda và Bedrock.`
 `- Location: Primary Node hiện đang hoạt động tại Availability Zone ap-southeast-1a.`<br>
 `- Thiết lập điểm mốc (Baseline) để so sánh. Tại thời điểm này, mọi kết nối từ ứng dụng đều đổ dồn về Zone 1a.`
 
-### 8.3 Post-condition (After)
+---
+### 8.3 Failover in progress 
 
 **Screenshot:**
 
 ![Pre-condition](./images/Db-reboot.jpg)
 
+**Notes:**<br>
+`- Status: chuyển sang Rebooting...`<br>
+`- Giả lập một tình huống thảm họa (Disaster) khiến trung tâm dữ liệu tại Zone 1a bị sập hoàn toàn. Lúc này, AWS sẽ tự động ngắt kết nối tại 1a và kích hoạt node dự phòng tại Zone khác.`
+
+---
+### 8.4 Post-condition (After)
+
+**Screenshot:**
+
 ![Pre-condition](./images/Post-condition.jpg)
 
 **Notes:**<br>
-`- Status: Instance hexacode-database đang ở trạng thái Available.`<br>
-`- Location: Primary Node hiện đang hoạt động tại Availability Zone ap-southeast-1a.`<br>
-`- Thiết lập điểm mốc (Baseline) để so sánh. Tại thời điểm này, mọi kết nối từ ứng dụng đều đổ dồn về Zone 1a.`
+`- Status: Instance đã quay lại trạng thái Available chỉ sau một thời gian ngắn.`<br>
+`- Location: Primary Node đã tự động chuyển sang ap-southeast-1b.`<br>
+`- Test case thực tế cho tính năng Multi-AZ. Hệ thống đã tự động switch AZ (Failover), đưa Node dự phòng ở Zone 1b lên làm Node chính mà không cần can thiệp thủ công vào cấu hình ứng dụng hay Endpoint. Đảm bảo hệ thống có khả năng chịu lỗi (Fault Tolerance) cao, đáp ứng các tiêu chuẩn về RTO (Recovery Time Objective) của dự án.`
+
+---
+### 8.5 Reflection
+
+Quá trình failover diễn ra hoàn toàn tự động bởi AWS RDS. DNS của DB Endpoint tự động cập nhật trỏ về IP của instance mới tại AZ 1b. Toàn bộ dữ liệu được bảo toàn nhờ cơ chế đồng bộ (Synchronous Replication) của Multi-AZ.
+
+Thời gian downtime thực tế (khoảng 70 giây) chủ yếu nằm ở việc DNS propagation và ứng dụng thực hiện các lần "Retry" để kết nối lại.
+Cải thiện: Trong tương lai, nhóm có thể cấu hình thông số TCP Keepalive trên tầng ứng dụng hoặc sử dụng RDS Proxy để giảm thời gian gián đoạn kết nối xuống mức thấp hơn (thường < 30s).
 
 *— End of Evidence Pack —*
