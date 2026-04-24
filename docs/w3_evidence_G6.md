@@ -207,7 +207,8 @@ WHERE
 ![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)
 
 **Notes:**  
-`[e.g. "Lambda được trigger từ SQS message sau khi submission-service push event. Cold start ~800ms, warm ~120ms."]`
+`Log thực tế xác nhận Lambda đã được kích hoạt thành công. Thời gian chạy (Duration) là 7363.24 ms. Lambda đã thực hiện kết nối với Bedrock, gửi yêu cầu và đợi AI xử lý để trả về kết quả. Việc log không có mã lỗi (Error) minh chứng cho sự ổn định của kết nối giữa
+Lambda và Bedrock.`
 
 ---
 
