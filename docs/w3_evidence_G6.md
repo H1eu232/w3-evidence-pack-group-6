@@ -190,7 +190,7 @@ WHERE
 
 **Screenshot:**
 
-1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)
+1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)<br>**Notes:`một request HTTP POST được gửi tới API Gateway. Frontend chuyển sang trạng thái "Searching..." để thông báo cho người dùng rằng yêu cầu đang được xử lý ở phía Backend.`**
 
 
 2. A lambda is triggered when a request is received.<br>![Trigger with API gateway](./images/Trigger-with-API-gateway.png)
