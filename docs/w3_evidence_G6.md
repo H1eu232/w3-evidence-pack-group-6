@@ -281,7 +281,7 @@ Lambda và Bedrock.`
 
 ---
 
-### 7.2 Evidence of Denial
+### Evidence of Denial
 
 **Screenshot:**
 
