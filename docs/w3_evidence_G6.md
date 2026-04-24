@@ -221,37 +221,6 @@ Lambda và Bedrock.`
 
 ---
 
-### 5.3 Bedrock Retrieve / RetrieveAndGenerate Response
-
-**Method used:** `[ ]` RetrieveAndGenerate &nbsp;&nbsp; `[ ]` Retrieve (then generate separately)  
-**Knowledge Base ID:** `[kb-XXXXXXXXXX]`  
-**Model used:** `[e.g. anthropic.claude-3-sonnet-20240229-v1:0]`
-
-**Response (from Lambda log or CLI):**
-
-```json
-{
-  "output": {
-    "text": "[AI response text here]"
-  },
-  "citations": [
-    {
-      "retrievedReferences": [
-        {
-          "content": { "text": "[Source chunk]" },
-          "location": { "s3Location": { "uri": "s3://..." } }
-        }
-      ]
-    }
-  ]
-}
-```
-
-**Notes:**  
-`[e.g. "Vector search hit S3 vector bucket, retrieved top-3 relevant chunks, passed vào Claude claude-3-sonnet. Response latency ~2.1s end-to-end từ Lambda invocation."]`
-
----
-
 ## 6. VPC + Networking Evidence
 
 ### 6.1 S3 Gateway Endpoint — Route Table
@@ -268,7 +237,7 @@ Lambda và Bedrock.`
 
 ---
 
-### 6.2 DB Security Group — Inbound Rules (App-tier SG as Source)
+### 6.2 DB Security Group — Inbound Rules (App-tier SG)
 
 **Screenshot:**
 
@@ -301,70 +270,7 @@ Lambda và Bedrock.`
 
 ---
 
-## 8. Bonus — Real-World Ops Scenario *(Tùy chọn)*
-
-> Chỉ điền nếu nhóm thực hiện ít nhất 1 scenario từ Bonus section.
-
----
-
-### 8.1 Scenario Name
-
-**Scenario attempted:** `[e.g. Simulated AZ failure / Blue-green deployment / Point-in-time restore]`  
-**Date & time:** `[YYYY-MM-DD HH:MM UTC]`
-
----
-
-### 8.2 Pre-condition (Before)
-
-**Screenshot / metric:**
-
-> *(Embed ảnh hoặc paste metric/log trước khi thực hiện scenario)*
-
-```
-[Pre-state evidence]
-```
-
----
-
-### 8.3 Execution
-
-**Steps performed:**
-
-1. `[Step 1]`
-2. `[Step 2]`
-3. `[Step 3]`
-
-**Timing:**
-
-| Event | Timestamp | Elapsed |
-|---|---|---|
-| Scenario triggered | `HH:MM:SS` | 0s |
-| Failure detected | `HH:MM:SS` | `Xs` |
-| Failover complete | `HH:MM:SS` | `Xs` |
-| Service restored | `HH:MM:SS` | `Xs` |
-
----
-
-### 8.4 Post-condition (After)
-
-**Screenshot / metric:**
-
-> *(Embed ảnh hoặc paste metric/log sau khi scenario hoàn tất)*
-
-```
-[Post-state evidence]
-```
-
----
-
-### 8.5 Reflection
-
-**What worked well:**  
-`[e.g. "Multi-AZ failover hoàn tất trong 87s, trong ngưỡng RTO mong đợi < 2 phút."]`
-
-**What surprised us / could be improved:**  
-`[e.g. "ElastiCache không failover tự động trong thời gian RDS failover — cache cold start gây tăng latency thêm ~15s. Cần pre-warm cache sau failover."]`
-
----
+## 8. Bonus — Real-World Ops Scenario
+Not done yet
 
 *— End of Evidence Pack —*
