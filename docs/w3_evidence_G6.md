@@ -104,14 +104,13 @@ Pattern 3(Chatbot Metadata):<br>
 
 ### 3.5 Parameter / Configuration Tuning *(nếu áp dụng)*
 
-**Screenshot / CLI output:**
+**Screenshot:**
 
-```
-[Custom parameter group settings]
-```
+![Parameter config](./images/Parameter.png)
 
-**Notes:**  
-`[e.g. "Tăng max_connections lên 200 vì mỗi Fargate task mở tối đa 5 connection. Default 100 sẽ bị saturate ở ~20 tasks."]`
+**Notes:**<br>
+`- Kiến trúc của nhóm có nhiều service chạy song song (Identity, Problem, Submission) và các Lambda function. Mỗi service này đều cần giữ các kết nối tới DB. Giá trị mặc định thường thấp và dựa trên RAM, có thể gây ra lỗi "Too many connections" khi có nhiều người dùng cùng lúc.`<br>
+`- Việc nâng max_connections lên 200 đảm bảo hệ thống không bị bottleneck tại lớp kết nối dữ liệu. Giúp DB sẵn sàng tiếp nhận lượng lớn request đồng thời từ nhiều nguồn khác nhau trong VPC và ngăn ngừa tình trạng ứng dụng bị crash do không thể thiết lập kết nối mới tới Database trong giờ cao điểm`
 
 ---
 
