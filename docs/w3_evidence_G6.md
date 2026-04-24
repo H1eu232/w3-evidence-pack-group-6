@@ -277,7 +277,7 @@ Lambda và Bedrock.`
 ### 8.1 Scenario Name
 
 **Scenario attempted:** `RDS Multi-AZ Failover`  
-**Date & time:** `2026-04-24 8:20 UTC]`
+**Date & time:** `2026-04-24 8:20 UTC`
 
 ---
 
@@ -320,7 +320,7 @@ Lambda và Bedrock.`
 
 Quá trình failover diễn ra hoàn toàn tự động bởi AWS RDS. DNS của DB Endpoint tự động cập nhật trỏ về IP của instance mới tại AZ 1b. Toàn bộ dữ liệu được bảo toàn nhờ cơ chế đồng bộ (Synchronous Replication) của Multi-AZ.
 
-Thời gian downtime thực tế (khoảng 70 giây) chủ yếu nằm ở việc DNS propagation và ứng dụng thực hiện các lần "Retry" để kết nối lại.
+Thời gian downtime thực tế (khoảng 70 giây) chủ yếu nằm ở việc DNS propagation và ứng dụng thực hiện các lần "Retry" để kết nối lại.<br>
 Cải thiện: Trong tương lai, nhóm có thể cấu hình thông số TCP Keepalive trên tầng ứng dụng hoặc sử dụng RDS Proxy để giảm thời gian gián đoạn kết nối xuống mức thấp hơn (thường < 30s).
 
 *— End of Evidence Pack —*
