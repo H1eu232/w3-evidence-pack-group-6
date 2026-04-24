@@ -281,31 +281,21 @@ REPORT RequestId: abc-123 Duration: 1243.12 ms Billed: 1300 ms
 ## 7. Negative Security Test
 ---
 
-### 7.1 Test Description
-
 **What was attempted:**  
 `Thử kết nối từ máy cá nhân tới Endpoint RDS và nhận lỗi Connection timed out`
 
-**From:** `[e.g. EC2 instance i-XXXXXXXXXX, SG: sg-YYYYYYYY (not app-tier)]`  
-**To:** `[e.g. RDS endpoint xxx.rds.amazonaws.com:5432]`  
 **Expected result:** Connection refused / timeout  
 
 ---
 
 ### 7.2 Evidence of Denial
 
-**Screenshot / CLI output:**
+**Screenshot:**
 
-```
-[e.g.
-$ psql -h xxx.rds.amazonaws.com -U admin -d mydb
-psql: error: connection to server at "xxx.rds.amazonaws.com" (10.0.3.45), 
-port 5432 failed: Connection timed out
-]
-```
+![Deny Access](./images/Negative-security-test.png)
 
 **Notes:**  
-`[e.g. "Timeout sau 30s confirm rằng security group không cho phép inbound 5432 từ SG ngoài app-tier. VPC flow log (nếu có) cũng show REJECT action."]`
+`Thử kết nối trực tiếp từ máy local (192.168.1.111) vào RDS port 5432 — TCP connect failed, TcpTestSucceeded: False. RDS nằm trong private subnet, Security Group chỉ cho phép inbound từ app-tier SG, không expose ra internet.`
 
 ---
 
