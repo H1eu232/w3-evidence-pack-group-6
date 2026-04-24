@@ -271,6 +271,38 @@ Lambda và Bedrock.`
 ---
 
 ## 8. Bonus — Real-World Ops Scenario
-Not done yet
+
+---
+
+### 8.1 Scenario Name
+
+**Scenario attempted:** `RDS Multi-AZ Failover`  
+**Date & time:** `2026-04-24 8:20 UTC]`
+
+---
+
+### 8.2 Pre-condition (Before)
+
+**Screenshot:**
+
+![Pre-condition](./images/Pre-condition.jpg)
+
+**Notes:**<br>
+`- Status: Instance hexacode-database đang ở trạng thái Available.`<br>
+`- Location: Primary Node hiện đang hoạt động tại Availability Zone ap-southeast-1a.`<br>
+`- Thiết lập điểm mốc (Baseline) để so sánh. Tại thời điểm này, mọi kết nối từ ứng dụng đều đổ dồn về Zone 1a.`
+
+### 8.3 Post-condition (After)
+
+**Screenshot:**
+
+![Pre-condition](./images/Db-reboot.jpg)
+
+![Pre-condition](./images/Post-condition.jpg)
+
+**Notes:**<br>
+`- Status: Instance hexacode-database đang ở trạng thái Available.`<br>
+`- Location: Primary Node hiện đang hoạt động tại Availability Zone ap-southeast-1a.`<br>
+`- Thiết lập điểm mốc (Baseline) để so sánh. Tại thời điểm này, mọi kết nối từ ứng dụng đều đổ dồn về Zone 1a.`
 
 *— End of Evidence Pack —*
