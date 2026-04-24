@@ -195,7 +195,7 @@ WHERE
 1. The user asks the AI questions in the frontend chat widget.<br>![Ask Chatbot in frontend chat widget](./images/ask-AI-from-FE.png)
 
 
-2. A lambda is triggered when a request is received.<br>![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)
+2. A lambda is triggered when a request is received.<br>![Trigger with API gateway](./images/Trigger-with-API-gateway.png)
 
 
 3. Successful response from aws bedrock -> lambda in frontend.<br>![Successful Response ](./images/Response-from-bedrock.png)
@@ -205,14 +205,7 @@ WHERE
 
 **CloudWatch log entry:**
 
-```
-[Paste relevant log lines here — include REQUEST ID, timestamp, and key output]
-e.g.
-START RequestId: abc-123 Version: $LATEST
-INFO Triggering Bedrock RAG for query: "..."
-END RequestId: abc-123
-REPORT RequestId: abc-123 Duration: 1243.12 ms Billed: 1300 ms
-```
+![Lambda CloudWatch log entry](./images/Lambda-log-entry.png)
 
 **Notes:**  
 `[e.g. "Lambda được trigger từ SQS message sau khi submission-service push event. Cold start ~800ms, warm ~120ms."]`
