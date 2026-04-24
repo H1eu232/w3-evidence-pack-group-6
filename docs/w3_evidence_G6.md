@@ -200,7 +200,6 @@ WHERE
 
 3. Successful response from aws bedrock -> lambda in frontend.<br>![Successful Response ](./images/Response-from-bedrock.png)
 
-
 ---
 
 **CloudWatch log entry:**
